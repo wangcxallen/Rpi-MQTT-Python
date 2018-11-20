@@ -10,7 +10,7 @@ import numpy as np
 
 HOST = "192.168.1.192"
 PORT = 1883
-TOPIC = "debug" #"UWB"
+TOPIC = "UWB"
 FLAG = 0
 
 def UWB_on_Message(client, userdata, msg):
