@@ -18,6 +18,7 @@ def UWB_on_Message(client, userdata, msg):
     if(len(msg.payload)):
         speaker = int(msg.payload)
         if(speaker== FLAG):
+            time.sleep(0.2)
             print("say")
             cmd = shlex.split("/home/pi/dw1000_rpi_new/src/dw1000_tx")
             p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
