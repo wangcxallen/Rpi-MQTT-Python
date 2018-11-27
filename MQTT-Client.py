@@ -5,7 +5,7 @@
 
 
 import paho.mqtt.client as client
-import time
+import time, subprocess, shlex
 import numpy as np
 
 HOST = "192.168.1.192"
@@ -18,7 +18,13 @@ def UWB_on_Message(client, userdata, msg):
     if(len(msg.payload)):
         speaker = int(msg.payload)
         if(speaker== FLAG):
-            print("me")
+            print("say")
+            cmd = shlex.split("/home/pi/dw1000_rpi_new/src/dw1000_rx_cir")
+            print(subprocess.run(cmd, stdout=subprocess.PIPE).stdout.decode("utf-8"))
+        else:
+            print("hear")
+            cmd = shlex.split("/home/pi/dw1000_rpi_new/src/dw1000_tx")
+            print(subprocess.run(cmd, stdout=subprocess.PIPE).stdout.decode("utf-8"))
     
 def on_connect(client, userdata, flags, rc):
     print("Connection returned result: " + connack_string(rc))
