@@ -10,17 +10,15 @@ import numpy as np
 
 HOST = "192.168.1.192"
 PORT = 1883
-TOPIC = "UWB"
+TOPIC = "debug" #"UWB"
 FLAG = 0
 
 def UWB_on_Message(client, userdata, msg):
-    print("%s %s" % (msg.topic, str(msg.payload)) )
-    print(len(msg.payload))
-    time.sleep(1)
+    print( "%s %s" % (msg.topic, str(msg.payload)) )
     if(len(msg.payload)):
         speaker = int(msg.payload)
-        if(speaker== (FLAG+3)%4 ):
-            UWB_client.publish( topic = TOPIC, payload = str(FLAG) + "is sending message")
+        if(speaker== FLAG):
+            print("me")
     
 def on_connect(client, userdata, flags, rc):
     print("Connection returned result: " + connack_string(rc))
